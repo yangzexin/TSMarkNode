@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E06935C248202D000CD9C7B /* TSMarkNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E069359248202D000CD9C7B /* TSMarkNode.h */; };
+		3E0693802482030C00CD9C7B /* TSUIRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693692482030900CD9C7B /* TSUIRegistry.m */; };
+		3E0693812482030C00CD9C7B /* TSConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06936A2482030900CD9C7B /* TSConnectionView.m */; };
+		3E0693822482030C00CD9C7B /* TSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06936B2482030900CD9C7B /* TSScrollView.m */; };
+		3E0693832482030C00CD9C7B /* TSNodeSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06936D2482030900CD9C7B /* TSNodeSelection.m */; };
+		3E0693842482030C00CD9C7B /* TSMindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06936E2482030900CD9C7B /* TSMindView.m */; };
+		3E0693852482030C00CD9C7B /* TSMarkDownReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693722482030A00CD9C7B /* TSMarkDownReader.m */; };
+		3E0693862482030C00CD9C7B /* TSNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693732482030A00CD9C7B /* TSNodeView.m */; };
+		3E0693872482030C00CD9C7B /* TSNodeStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693742482030A00CD9C7B /* TSNodeStyle.m */; };
+		3E0693882482030C00CD9C7B /* TSNode+LayoutAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693772482030B00CD9C7B /* TSNode+LayoutAddition.m */; };
+		3E0693892482030C00CD9C7B /* TSLayouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693782482030B00CD9C7B /* TSLayouter.m */; };
+		3E06938A2482030C00CD9C7B /* TSStandardLayouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06937D2482030C00CD9C7B /* TSStandardLayouter.m */; };
+		3E06938B2482030C00CD9C7B /* TSNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06937F2482030C00CD9C7B /* TSNode.m */; };
+		3E0693942482031B00CD9C7B /* TSScriptLayouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06938E2482031B00CD9C7B /* TSScriptLayouter.m */; };
+		3E0693952482031B00CD9C7B /* TSLuaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E06938F2482031B00CD9C7B /* TSLuaEngine.m */; };
+		3E0693962482031B00CD9C7B /* TSScriptConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693912482031B00CD9C7B /* TSScriptConnectionView.m */; };
+		3E0693972482031B00CD9C7B /* TSScriptMindViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0693932482031B00CD9C7B /* TSScriptMindViewStyle.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E06939E2482037D00CD9C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E0693992482037D00CD9C7B /* SFiOSKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3ED59DB91828D33A002531DD;
+			remoteInfo = SFiOSKit;
+		};
+		3E0693A52482038A00CD9C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E0693A02482038A00CD9C7B /* MMLuaBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E4336D21B213A940051F063;
+			remoteInfo = MMLuaBridge;
+		};
+		3E0693A72482038A00CD9C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E0693A02482038A00CD9C7B /* MMLuaBridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E4336DD1B213A940051F063;
+			remoteInfo = MMLuaBridgeTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3E069354248202D000CD9C7B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				3E06935C248202D000CD9C7B /* TSMarkNode.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3E069356248202D000CD9C7B /* libTSMarkNode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTSMarkNode.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E069359248202D000CD9C7B /* TSMarkNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSMarkNode.h; sourceTree = "<group>"; };
+		3E0693672482030800CD9C7B /* TSLayouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLayouter.h; sourceTree = "<group>"; };
+		3E0693682482030900CD9C7B /* TSConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSConnectionView.h; sourceTree = "<group>"; };
+		3E0693692482030900CD9C7B /* TSUIRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUIRegistry.m; sourceTree = "<group>"; };
+		3E06936A2482030900CD9C7B /* TSConnectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSConnectionView.m; sourceTree = "<group>"; };
+		3E06936B2482030900CD9C7B /* TSScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSScrollView.m; sourceTree = "<group>"; };
+		3E06936C2482030900CD9C7B /* TSNodeStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNodeStyle.h; sourceTree = "<group>"; };
+		3E06936D2482030900CD9C7B /* TSNodeSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNodeSelection.m; sourceTree = "<group>"; };
+		3E06936E2482030900CD9C7B /* TSMindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMindView.m; sourceTree = "<group>"; };
+		3E06936F2482030900CD9C7B /* TSUIRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUIRegistry.h; sourceTree = "<group>"; };
+		3E0693702482030A00CD9C7B /* TSMindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMindView.h; sourceTree = "<group>"; };
+		3E0693712482030A00CD9C7B /* TSStandardLayouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSStandardLayouter.h; sourceTree = "<group>"; };
+		3E0693722482030A00CD9C7B /* TSMarkDownReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMarkDownReader.m; sourceTree = "<group>"; };
+		3E0693732482030A00CD9C7B /* TSNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNodeView.m; sourceTree = "<group>"; };
+		3E0693742482030A00CD9C7B /* TSNodeStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNodeStyle.m; sourceTree = "<group>"; };
+		3E0693752482030B00CD9C7B /* TSLayouter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSLayouter+Private.h"; sourceTree = "<group>"; };
+		3E0693762482030B00CD9C7B /* TSNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNode.h; sourceTree = "<group>"; };
+		3E0693772482030B00CD9C7B /* TSNode+LayoutAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TSNode+LayoutAddition.m"; sourceTree = "<group>"; };
+		3E0693782482030B00CD9C7B /* TSLayouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLayouter.m; sourceTree = "<group>"; };
+		3E0693792482030B00CD9C7B /* TSNodeSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNodeSelection.h; sourceTree = "<group>"; };
+		3E06937A2482030B00CD9C7B /* TSScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSScrollView.h; sourceTree = "<group>"; };
+		3E06937B2482030C00CD9C7B /* TSNode+LayoutAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TSNode+LayoutAddition.h"; sourceTree = "<group>"; };
+		3E06937C2482030C00CD9C7B /* TSNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSNodeView.h; sourceTree = "<group>"; };
+		3E06937D2482030C00CD9C7B /* TSStandardLayouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSStandardLayouter.m; sourceTree = "<group>"; };
+		3E06937E2482030C00CD9C7B /* TSMarkDownReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMarkDownReader.h; sourceTree = "<group>"; };
+		3E06937F2482030C00CD9C7B /* TSNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSNode.m; sourceTree = "<group>"; };
+		3E06938C2482031A00CD9C7B /* TSScriptMindViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSScriptMindViewStyle.h; sourceTree = "<group>"; };
+		3E06938D2482031B00CD9C7B /* TSScriptConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSScriptConnectionView.h; sourceTree = "<group>"; };
+		3E06938E2482031B00CD9C7B /* TSScriptLayouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSScriptLayouter.m; sourceTree = "<group>"; };
+		3E06938F2482031B00CD9C7B /* TSLuaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLuaEngine.m; sourceTree = "<group>"; };
+		3E0693902482031B00CD9C7B /* TSLuaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLuaEngine.h; sourceTree = "<group>"; };
+		3E0693912482031B00CD9C7B /* TSScriptConnectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSScriptConnectionView.m; sourceTree = "<group>"; };
+		3E0693922482031B00CD9C7B /* TSScriptLayouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSScriptLayouter.h; sourceTree = "<group>"; };
+		3E0693932482031B00CD9C7B /* TSScriptMindViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSScriptMindViewStyle.m; sourceTree = "<group>"; };
+		3E0693992482037D00CD9C7B /* SFiOSKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SFiOSKit.xcodeproj; path = ../SFLibraries/SFiOSKit/SFiOSKit.xcodeproj; sourceTree = "<group>"; };
+		3E0693A02482038A00CD9C7B /* MMLuaBridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMLuaBridge.xcodeproj; path = ../MMLuaBridge/MMLuaBridge.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E069353248202D000CD9C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E06934D248202D000CD9C7B = {
+			isa = PBXGroup;
+			children = (
+				3E069358248202D000CD9C7B /* TSMarkNode */,
+				3E0693982482036A00CD9C7B /* Denpendencies */,
+				3E069357248202D000CD9C7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E069357248202D000CD9C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E069356248202D000CD9C7B /* libTSMarkNode.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E069358248202D000CD9C7B /* TSMarkNode */ = {
+			isa = PBXGroup;
+			children = (
+				3E069366248202F300CD9C7B /* Script */,
+				3E069359248202D000CD9C7B /* TSMarkNode.h */,
+				3E0693682482030900CD9C7B /* TSConnectionView.h */,
+				3E06936A2482030900CD9C7B /* TSConnectionView.m */,
+				3E0693672482030800CD9C7B /* TSLayouter.h */,
+				3E0693782482030B00CD9C7B /* TSLayouter.m */,
+				3E0693752482030B00CD9C7B /* TSLayouter+Private.h */,
+				3E06937E2482030C00CD9C7B /* TSMarkDownReader.h */,
+				3E0693722482030A00CD9C7B /* TSMarkDownReader.m */,
+				3E0693702482030A00CD9C7B /* TSMindView.h */,
+				3E06936E2482030900CD9C7B /* TSMindView.m */,
+				3E0693762482030B00CD9C7B /* TSNode.h */,
+				3E06937F2482030C00CD9C7B /* TSNode.m */,
+				3E06937B2482030C00CD9C7B /* TSNode+LayoutAddition.h */,
+				3E0693772482030B00CD9C7B /* TSNode+LayoutAddition.m */,
+				3E0693792482030B00CD9C7B /* TSNodeSelection.h */,
+				3E06936D2482030900CD9C7B /* TSNodeSelection.m */,
+				3E06936C2482030900CD9C7B /* TSNodeStyle.h */,
+				3E0693742482030A00CD9C7B /* TSNodeStyle.m */,
+				3E06937C2482030C00CD9C7B /* TSNodeView.h */,
+				3E0693732482030A00CD9C7B /* TSNodeView.m */,
+				3E06937A2482030B00CD9C7B /* TSScrollView.h */,
+				3E06936B2482030900CD9C7B /* TSScrollView.m */,
+				3E0693712482030A00CD9C7B /* TSStandardLayouter.h */,
+				3E06937D2482030C00CD9C7B /* TSStandardLayouter.m */,
+				3E06936F2482030900CD9C7B /* TSUIRegistry.h */,
+				3E0693692482030900CD9C7B /* TSUIRegistry.m */,
+			);
+			path = TSMarkNode;
+			sourceTree = "<group>";
+		};
+		3E069366248202F300CD9C7B /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				3E0693902482031B00CD9C7B /* TSLuaEngine.h */,
+				3E06938F2482031B00CD9C7B /* TSLuaEngine.m */,
+				3E06938D2482031B00CD9C7B /* TSScriptConnectionView.h */,
+				3E0693912482031B00CD9C7B /* TSScriptConnectionView.m */,
+				3E0693922482031B00CD9C7B /* TSScriptLayouter.h */,
+				3E06938E2482031B00CD9C7B /* TSScriptLayouter.m */,
+				3E06938C2482031A00CD9C7B /* TSScriptMindViewStyle.h */,
+				3E0693932482031B00CD9C7B /* TSScriptMindViewStyle.m */,
+			);
+			name = Script;
+			sourceTree = "<group>";
+		};
+		3E0693982482036A00CD9C7B /* Denpendencies */ = {
+			isa = PBXGroup;
+			children = (
+				3E0693A02482038A00CD9C7B /* MMLuaBridge.xcodeproj */,
+				3E0693992482037D00CD9C7B /* SFiOSKit.xcodeproj */,
+			);
+			name = Denpendencies;
+			sourceTree = "<group>";
+		};
+		3E06939A2482037D00CD9C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E06939F2482037D00CD9C7B /* libSFiOSKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E0693A12482038A00CD9C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E0693A62482038A00CD9C7B /* libMMLuaBridge.a */,
+				3E0693A82482038A00CD9C7B /* MMLuaBridgeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E069355248202D000CD9C7B /* TSMarkNode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E06935F248202D000CD9C7B /* Build configuration list for PBXNativeTarget "TSMarkNode" */;
+			buildPhases = (
+				3E069352248202D000CD9C7B /* Sources */,
+				3E069353248202D000CD9C7B /* Frameworks */,
+				3E069354248202D000CD9C7B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TSMarkNode;
+			productName = TSMarkNode;
+			productReference = 3E069356248202D000CD9C7B /* libTSMarkNode.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E06934E248202D000CD9C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = yangzexin;
+				TargetAttributes = {
+					3E069355248202D000CD9C7B = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = 3E069351248202D000CD9C7B /* Build configuration list for PBXProject "TSMarkNode" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E06934D248202D000CD9C7B;
+			productRefGroup = 3E069357248202D000CD9C7B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3E0693A12482038A00CD9C7B /* Products */;
+					ProjectRef = 3E0693A02482038A00CD9C7B /* MMLuaBridge.xcodeproj */;
+				},
+				{
+					ProductGroup = 3E06939A2482037D00CD9C7B /* Products */;
+					ProjectRef = 3E0693992482037D00CD9C7B /* SFiOSKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				3E069355248202D000CD9C7B /* TSMarkNode */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3E06939F2482037D00CD9C7B /* libSFiOSKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSFiOSKit.a;
+			remoteRef = 3E06939E2482037D00CD9C7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E0693A62482038A00CD9C7B /* libMMLuaBridge.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMMLuaBridge.a;
+			remoteRef = 3E0693A52482038A00CD9C7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E0693A82482038A00CD9C7B /* MMLuaBridgeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MMLuaBridgeTests.xctest;
+			remoteRef = 3E0693A72482038A00CD9C7B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E069352248202D000CD9C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0693842482030C00CD9C7B /* TSMindView.m in Sources */,
+				3E0693942482031B00CD9C7B /* TSScriptLayouter.m in Sources */,
+				3E0693972482031B00CD9C7B /* TSScriptMindViewStyle.m in Sources */,
+				3E0693822482030C00CD9C7B /* TSScrollView.m in Sources */,
+				3E06938A2482030C00CD9C7B /* TSStandardLayouter.m in Sources */,
+				3E0693852482030C00CD9C7B /* TSMarkDownReader.m in Sources */,
+				3E06938B2482030C00CD9C7B /* TSNode.m in Sources */,
+				3E0693862482030C00CD9C7B /* TSNodeView.m in Sources */,
+				3E0693802482030C00CD9C7B /* TSUIRegistry.m in Sources */,
+				3E0693892482030C00CD9C7B /* TSLayouter.m in Sources */,
+				3E0693812482030C00CD9C7B /* TSConnectionView.m in Sources */,
+				3E0693872482030C00CD9C7B /* TSNodeStyle.m in Sources */,
+				3E0693832482030C00CD9C7B /* TSNodeSelection.m in Sources */,
+				3E0693882482030C00CD9C7B /* TSNode+LayoutAddition.m in Sources */,
+				3E0693962482031B00CD9C7B /* TSScriptConnectionView.m in Sources */,
+				3E0693952482031B00CD9C7B /* TSLuaEngine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3E06935D248202D000CD9C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3E06935E248202D000CD9C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E069360248202D000CD9C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HNESHK23T;
+				HEADER_SEARCH_PATHS = (
+					../SFLibraries/SFFoundation,
+					../SFLibraries/SFiOSKit,
+					../MMLuaBridge,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E069361248202D000CD9C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5HNESHK23T;
+				HEADER_SEARCH_PATHS = (
+					../SFLibraries/SFFoundation,
+					../SFLibraries/SFiOSKit,
+					../MMLuaBridge,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E069351248202D000CD9C7B /* Build configuration list for PBXProject "TSMarkNode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E06935D248202D000CD9C7B /* Debug */,
+				3E06935E248202D000CD9C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E06935F248202D000CD9C7B /* Build configuration list for PBXNativeTarget "TSMarkNode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E069360248202D000CD9C7B /* Debug */,
+				3E069361248202D000CD9C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E06934E248202D000CD9C7B /* Project object */;
+}
