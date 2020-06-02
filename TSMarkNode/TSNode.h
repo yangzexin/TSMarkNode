@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSMutableArray<TSNode *> *subnodes;
 
-@property (nonatomic, copy) NSString *attributes;
+@property (nonatomic, copy, nullable) NSString *attributes;
 @property (nonatomic, assign) NSUInteger level;
 @property (nonatomic, weak, nullable) TSNode *parent;
 

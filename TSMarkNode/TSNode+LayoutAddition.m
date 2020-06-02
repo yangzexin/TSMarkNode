@@ -484,6 +484,22 @@
     [self notifyNewSubnodeObserver:node];
 }
 
+- (TSNode *)addNodeAsSubWithTitle:(NSString *)title {
+    TSNode *node = [TSNode new];
+    node.title = title;
+    node.subnodes = [NSMutableArray array];
+    [self addNodeAsSub:node];
+    return node;
+}
+
+- (TSNode *)addNodeAsNextSiblingWithTitle:(NSString *)title {
+    TSNode *node = [TSNode new];
+    node.title = title;
+    node.subnodes = [NSMutableArray array];
+    [self addNodeAsNextSibling:node exceptNode:self];
+    return node;
+}
+
 - (BOOL)addNodeAsSub:(TSNode *)node exceptNode:(TSNode *)exceptNode {
     if ([self.subnodes indexOfObject:exceptNode] != NSNotFound) {
         return NO;

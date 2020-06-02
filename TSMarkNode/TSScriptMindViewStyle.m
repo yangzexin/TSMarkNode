@@ -27,14 +27,11 @@
 
 @implementation TSScriptMindViewStyle
 
-+ (instancetype)shared {
-    static TSScriptMindViewStyle *instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self class] new];
-    });
+- (instancetype)initWithEngine:(TSLuaEngine *)engine {
+    TSScriptMindViewStyle *style = [TSScriptMindViewStyle new];
+    style.luaEngine = engine;
     
-    return instance;
+    return style;
 }
 
 - (void)willLayoutRootNode:(nullable TSNode *)node layouterName:(nonnull NSString *)layouterName {

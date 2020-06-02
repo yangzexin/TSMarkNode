@@ -16,5 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) TSLuaEngine *luaEngine;
 
+- (instancetype)initWithEngine:(TSLuaEngine *)engine;
+
 @end
 NS_ASSUME_NONNULL_END

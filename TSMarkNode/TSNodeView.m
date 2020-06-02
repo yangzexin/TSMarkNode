@@ -102,6 +102,7 @@
             self.textView.frame = self.label.frame;
             self.textView.font = self.label.font;
             self.textView.textColor = self.label.textColor;
+            self.textView.textAlignment = self.label.textAlignment;
             [self.textView becomeFirstResponder];
         }
     }];

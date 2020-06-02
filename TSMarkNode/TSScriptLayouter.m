@@ -42,6 +42,14 @@
 
 @implementation TSScriptLayouter
 
+- (instancetype)initWithName:(NSString *)name engine:(TSLuaEngine *)engine {
+    TSScriptLayouter *layouter = [TSScriptLayouter new];
+    layouter.name = name;
+    layouter.luaEngine = engine;
+    
+    return layouter;
+}
+
 - (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSMutableDictionary *nodeDict = [NSMutableDictionary dictionaryWithDictionary:[node dictionary]];
     [nodeDict addEntriesFromDictionary:@{@"layoutWidth": [NSNumber numberWithInteger:size.width], @"layoutHeight": [NSNumber numberWithInteger:size.height]}];
@@ -82,7 +90,7 @@
     return layoutResult;
 }
 
-+ (NSArray *)layouterNamesWithLuaEngine:(TSLuaEngine *)luaEngine {
++ (nullable NSArray<NSString *> *)layouterNamesWithLuaEngine:(TSLuaEngine *)luaEngine {
     __block NSString *result = nil;
     [self sf_sendServant:[luaEngine luaServiceWithName:@"Theme" params:@{@"action": @"layouterNames"}] success:^(id value) {
         result = value;

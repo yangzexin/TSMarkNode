@@ -352,6 +352,10 @@
     [self setNode:self.node animated:animated];
 }
 
+- (void)refreshAnimated:(BOOL)animated {
+    [self _refreshUsingCurrentNodeAnimated:animated];
+}
+
 - (void)_tapAtPoint:(CGPoint)point {
     TSNodeSelection *selection = [self selectionWithPoint:point];
     TSNode *targetNode = [selection node];

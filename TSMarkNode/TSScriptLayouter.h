@@ -16,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) TSLuaEngine *luaEngine;
 
-+ (NSArray *)layouterNamesWithLuaEngine:(TSLuaEngine *)luaEngine;
+- (instancetype)initWithName:(NSString *)name engine:(TSLuaEngine *)engine;
+
++ (nullable NSArray<NSString *> *)layouterNamesWithLuaEngine:(TSLuaEngine *)luaEngine;
 
 @end
 

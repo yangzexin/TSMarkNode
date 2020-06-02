@@ -217,11 +217,11 @@
     return self.luaRunner.uid;
 }
 
-- (void)loadWithMainFile:(NSString *)mainFile completion:(void(^)(BOOL succeed, NSError *error))completion {
+- (void)loadWithMainFile:(NSString *)mainFile completion:(void(^)(BOOL succeed,  NSError * _Nullable error))completion {
     [self _tryLoadFromMainBundleWithMainFile:mainFile completion:completion];
 }
 
-- (void)_tryLoadFromMainBundleWithMainFile:(NSString *)mainFile completion:(void(^)(BOOL succeed, NSError *error))completion {
+- (void)_tryLoadFromMainBundleWithMainFile:(NSString *)mainFile completion:(void(^)(BOOL succeed,  NSError * _Nullable error))completion {
     NSString *scripts = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:mainFile ofType:nil]
                                                   encoding:NSUTF8StringEncoding
                                                      error:nil];

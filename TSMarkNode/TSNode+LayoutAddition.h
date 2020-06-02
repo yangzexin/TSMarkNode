@@ -97,6 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addNodeAsSub:(TSNode *)node index:(NSUInteger)index;
 - (void)addNodeAsSub:(TSNode *)node;
+- (TSNode *)addNodeAsSubWithTitle:(NSString *)title;
+- (TSNode *)addNodeAsNextSiblingWithTitle:(NSString *)title;
 
 - (BOOL)addNodeAsSub:(TSNode *)node exceptNode:(TSNode *)exceptNode;
 

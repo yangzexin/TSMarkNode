@@ -88,11 +88,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setEditing:(BOOL)editing node:(TSNode *)node;
 
-- (TSNodeSelection *)selectionForNode:(TSNode *)node;
+- (nullable TSNodeSelection *)selectionForNode:(TSNode *)node;
 
 - (CGRect)visibleRect;
 
 - (void)removeNode:(TSNode *)node animated:(BOOL)animated;
+
+- (void)refreshAnimated:(BOOL)animated;
 
 @end
 
