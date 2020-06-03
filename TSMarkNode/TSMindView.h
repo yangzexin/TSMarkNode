@@ -53,6 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface TSUpdateSizeHandle : NSObject
+
+@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) BOOL didUpdate;
+
+@end
+
 @protocol TSMindViewDelegate <NSObject>
 
 @optional
@@ -66,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mindView:(TSMindView *)mindView didLayoutView:(UIView<TSMindNodeView> *)view;
 - (void)didFinishLayoutMindView:(TSMindView *)mindView;
 - (BOOL)mindView:(TSMindView *)mindView draggingToShowRect:(CGRect)rect delta:(CGPoint)delta;
-- (void)mindView:(TSMindView *)mindView didUpdateSize:(CGSize)size;
+- (void)mindView:(TSMindView *)mindView didUpdateSize:(TSUpdateSizeHandle *)handle;
 
 @end
 

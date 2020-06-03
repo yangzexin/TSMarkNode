@@ -13,6 +13,10 @@
 #import "TSConnectionView.h"
 #import "TSStandardLayouter.h"
 
+@implementation TSUpdateSizeHandle
+
+@end
+
 @interface TSNodeLayoutContext : NSObject
 
 @property (nonatomic, weak) UIView<TSMindNodeView> *nodeView;
@@ -196,7 +200,13 @@
     CGSize currentSize = self.bounds.size;
     if (visibleSize.width > currentSize.width || visibleSize.height > currentSize.height) {
         if ([self.delegate respondsToSelector:@selector(mindView:didUpdateSize:)]) {
-            [self.delegate mindView:self didUpdateSize:visibleSize];
+            TSUpdateSizeHandle *handle = [TSUpdateSizeHandle new];
+            handle.size = visibleSize;
+            handle.didUpdate = NO;
+            [self.delegate mindView:self didUpdateSize:handle];
+            if (handle.didUpdate) {
+                self.layoutResult = [self.layouter layout:self.node size:self.bounds.size];
+            }
         }
     }
     
