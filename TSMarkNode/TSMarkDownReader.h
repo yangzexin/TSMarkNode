@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TSMarkDownReader : SFServant
 
+@property (nonatomic, copy) NSString *defaultTitleForRootNode;
+
 - (instancetype)initWithFile:(NSString *)file;
 
 - (instancetype)initWithURLString:(NSString *)URLString;

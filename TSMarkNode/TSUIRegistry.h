@@ -30,7 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TSUIRegistries : NSObject
+@protocol TSUIRegistriesType <NSObject>
+
+- (NSArray<TSMindViewStyleRegistry *> *)allStyleRegistries;
+- (NSArray<TSLayouterRegistry *> *)allLayoutRegistries;
+
+@end
+
+@interface TSUIRegistries : NSObject <TSUIRegistriesType>
 
 + (instancetype)shared;
 

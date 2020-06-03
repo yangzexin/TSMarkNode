@@ -67,7 +67,6 @@
     self.layoutFlag = YES;
     self.dragging = NO;
     self.style = [TSDefaultMindViewStyle shared];
-    self.canUseLayouterStyle = NO;
     
     self.layouter = ({
         TSStandardLayouter *layouter = [[TSStandardLayouter alloc] init];
@@ -174,9 +173,12 @@
 - (void)_updateLayoutResults {
     id<TSMindViewStyle> mindViewStyle = self.style;
     BOOL usePreferedStyle = NO;
-    if (self.canUseLayouterStyle && [self.layouter respondsToSelector:@selector(preferedMindViewStyle)]) {
-        mindViewStyle = [self.layouter preferedMindViewStyle];
-        usePreferedStyle = YES;
+    if ([self.layouter respondsToSelector:@selector(preferedMindViewStyle)]) {
+        id<TSMindViewStyle> preferedStyle = [self.layouter preferedMindViewStyle];
+        if (preferedStyle != nil) {
+            mindViewStyle = preferedStyle;
+            usePreferedStyle = YES;
+        }
     }
     [mindViewStyle willLayoutRootNode:self.node layouterName:self.layouter.name];
     
@@ -192,7 +194,7 @@
     self.layoutResult = [self.layouter layout:self.node size:self.bounds.size];
     CGSize visibleSize = [self visibleRect].size;
     CGSize currentSize = self.bounds.size;
-    if (visibleSize.width > currentSize.width || visibleSize.height > currentSize.height ) {
+    if (visibleSize.width > currentSize.width || visibleSize.height > currentSize.height) {
         if ([self.delegate respondsToSelector:@selector(mindView:didUpdateSize:)]) {
             [self.delegate mindView:self didUpdateSize:visibleSize];
         }

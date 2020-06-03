@@ -82,8 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) id<TSMindViewStyle> style;
 
-@property (nonatomic, assign) BOOL canUseLayouterStyle;
-
 - (void)setNode:(TSNode * _Nonnull)node animated:(BOOL)animated;
 
 - (void)setEditing:(BOOL)editing node:(TSNode *)node;

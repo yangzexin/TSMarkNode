@@ -20,8 +20,14 @@
 
 @implementation TSMarkDownReader
 
-- (instancetype)initWithFile:(NSString *)file {
+- (instancetype)init {
     self = [super init];
+    
+    return self;
+}
+
+- (instancetype)initWithFile:(NSString *)file {
+    self = [self init];
     
     self.file = file;
     
@@ -29,11 +35,42 @@
 }
 
 - (instancetype)initWithURLString:(NSString *)URLString {
-    self = [super init];
+    self = [self init];
     
     self.URLString = URLString;
     
     return self;
+}
+
+- (void)_checkIfCreateRootNodeWithDefaultTitle:(NSString *)title lines:(NSArray *)lines stack:(NSMutableArray *)stack {
+    NSMutableDictionary<NSNumber *, NSNumber *> *keyLevelValueCount = [NSMutableDictionary dictionary];
+    NSUInteger minLevel = 999;
+    for (NSString *line in lines) {
+        if ([line hasPrefix:@"#"]) {
+            TSNode *node = [self _getNode:line onlyLevel:YES];
+            if (node != nil) {
+                if (node.level < minLevel) {
+                    minLevel = node.level;
+                }
+                NSNumber *count = keyLevelValueCount[@(node.level)];
+                if (count == nil) {
+                    count = @1;
+                } else {
+                    count = @(count.unsignedIntegerValue + 1);
+                }
+                keyLevelValueCount[@(node.level)] = count;
+            }
+        }
+    }
+    NSNumber *count = keyLevelValueCount[@(minLevel)];
+    if (count.unsignedIntegerValue != 1) {
+        TSNode *rootNode = [TSNode new];
+        rootNode.level = 0;
+        rootNode.title = title == nil ? (self.defaultTitleForRootNode == nil ? @"Untitled" : self.defaultTitleForRootNode) : title;
+        rootNode.subnodes = [NSMutableArray array];
+        
+        [stack addObject:rootNode];
+    }
 }
 
 - (void)servantStartingService {
@@ -41,13 +78,16 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError *error = nil;
         NSString *contents = nil;
+        NSString *defaultTitle = nil;
         if (self.file) {
+            defaultTitle = [self.file lastPathComponent];
             contents = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.file ofType:nil] encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 [self returnWithFeedback:[SFServantFeedback feedbackWithError:error]];
                 return;
             }
         } else if (self.URLString) {
+            defaultTitle = [self.URLString lastPathComponent];
             contents = [NSString stringWithContentsOfURL:[NSURL URLWithString:self.URLString] encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 [self returnWithFeedback:[SFServantFeedback feedbackWithError:error]];
@@ -61,6 +101,7 @@
         TSNode *latestAddNode = nil;
         TSNode *latestAttributeNode = nil;
         NSArray<NSString *> *lines = [contents componentsSeparatedByString:@"\n"];
+        [self _checkIfCreateRootNodeWithDefaultTitle:defaultTitle lines:lines stack:stack];
         for (NSUInteger i = 0; i < lines.count; ++i) {
             NSString *originalLine = [lines objectAtIndex:i];
             NSString *line = [originalLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -178,6 +219,10 @@
 }
 
 - (TSNode *)_getNode:(NSString *)line {
+    return [self _getNode:line onlyLevel:NO];
+}
+
+- (TSNode *)_getNode:(NSString *)line onlyLevel:(BOOL)onlyLevel {
     NSUInteger whitespaceIndex = [line sf_find:@" "];
     if (whitespaceIndex == -1) {
         NSLog(@"Warning: invalid format: %@", line);
@@ -185,8 +230,10 @@
     }
     TSNode *node = [TSNode new];
     node.level = whitespaceIndex;
-    node.title = [TSNode processTitle:[line sf_substringWithBeginIndex:whitespaceIndex + 1 endIndex:line.length]];
-    node.subnodes = [NSMutableArray array];
+    if (!onlyLevel) {
+        node.title = [TSNode processTitle:[line sf_substringWithBeginIndex:whitespaceIndex + 1 endIndex:line.length]];
+        node.subnodes = [NSMutableArray array];
+    }
     
     return node;
 }

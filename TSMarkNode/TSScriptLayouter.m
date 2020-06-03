@@ -114,6 +114,10 @@
 
 - (id<TSMindViewStyle>)preferedMindViewStyle {
     NSAssert(self.luaEngine != nil, @"lua engine cannot be nil");
+    NSString *result = [self.luaEngine resultValueByCallingFunction:@"supportStyle" params:@[]];
+    if (![@"1" isEqualToString:result]) {
+        return nil;
+    }
     TSScriptMindViewStyle *style = [TSScriptMindViewStyle new];
     style.luaEngine = self.luaEngine;
     
