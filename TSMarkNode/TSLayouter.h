@@ -15,10 +15,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TSLayoutResult : NSObject
+@interface TSNodeLayoutResult : NSObject
 
 @property (nonatomic, assign, readonly) CGRect frame;
-@property (nonatomic, strong, readonly, nullable) NSArray<TSLayoutResult *> *subNodeResults;
+@property (nonatomic, strong, readonly, nullable) NSArray<TSNodeLayoutResult *> *subNodeResults;
 @property (nonatomic, assign) CGPoint connectionPoint;
 @property (nonatomic, assign) CGPoint plugPoint;
 
@@ -29,9 +29,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, readonly, nullable) TSNode *node;
 
-+ (void)traverseWithResult:(TSLayoutResult *)result reverse:(BOOL)reverse block:(void(^)(TSLayoutResult *result, BOOL *stop))block;
++ (void)traverseWithResult:(TSNodeLayoutResult *)result reverse:(BOOL)reverse block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block;
 
-+ (void)traverseWithResult:(TSLayoutResult *)result block:(void(^)(TSLayoutResult *result, BOOL *stop))block;
++ (void)traverseWithResult:(TSNodeLayoutResult *)result block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block;
+
+@end
+
+@interface TSLayoutResult : NSObject
+
+@property (nonatomic, strong, readonly) TSNodeLayoutResult *nodeLayoutResult;
+@property (nonatomic, assign, readonly) CGRect initialDisplayRect;
 
 @end
 
@@ -62,15 +69,45 @@ typedef struct {
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, weak) id<TSLayouterDelegate> delegate;
 
-- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size;
+/**
+ Layout specified node by constrainted size of container.
+ - parameter node: Root node
+ - parameter size: Size of conatiner
+ - returns: The layout result of all nodes and initial display rect.
+ */
+- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size;
 
+/**
+ Check if layouter support dragging
+ - returns: YES if layouter support dragging
+ */
 - (BOOL)shouldStartDragging;
 
-- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSLayoutResult *)target tempNode:(TSNode *)tempNode;
+/**
+ Determine which node that closing to dragging node can be placed
+ - parameter draggingNode: The dragging node
+ - parameter draggingFrame: The frame of dragging node
+ - parameter displayRect: The display rect of closing node
+ - parameter tempNode: The node temporary created by dragging
+ - returns: YES if dragging performed and tempNode added
+ */
+- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSNodeLayoutResult *)target tempNode:(TSNode *)tempNode;
 
 @optional
+/**
+ Chance for changing text alignment for node
+ - parameter node: node
+ - parameter textSize: The text size(width, height) of node's title
+ - parameter nodeStyle: Node style of node
+ - parameter originalAlignment: Original text alignment
+ - returns: New text alignment
+ */
 - (NSTextAlignment)textAlignmentForNode:(TSNode *)node textSize:(CGSize)textSize nodeStyle:(id<TSNodeStyle>)nodeStyle originalAlignment:(NSTextAlignment)originalAlignment;
 
+/**
+ Chance to replacing style of mind view
+ - returns: The new style, or nil if still use default style
+ */
 - (id<TSMindViewStyle>)preferedMindViewStyle;
 
 @end

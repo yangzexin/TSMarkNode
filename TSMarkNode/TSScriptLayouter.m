@@ -50,7 +50,7 @@
     return layouter;
 }
 
-- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSMutableDictionary *nodeDict = [NSMutableDictionary dictionaryWithDictionary:[node dictionary]];
     [nodeDict addEntriesFromDictionary:@{@"layoutWidth": [NSNumber numberWithInteger:size.width], @"layoutHeight": [NSNumber numberWithInteger:size.height]}];
     __block NSDictionary *resultDict = nil;
@@ -63,13 +63,13 @@
     SFMappingPropertyToClass(subnodes, TSScriptLayoutResult)
     SFEndPropertyMapping;
     NSArray *results = [TSScriptLayoutResult sf_objectFromDictionary:resultDict mapping:mapping];
-    TSLayoutResult *layoutResult = [self _layoutResultWithScriptResult:[results objectAtIndex:0] node:node];
+    TSNodeLayoutResult *layoutResult = [self _layoutResultWithScriptResult:[results objectAtIndex:0] node:node];
     
     return layoutResult;
 }
 
-- (TSLayoutResult *)_layoutResultWithScriptResult:(TSScriptLayoutResult *)result node:(TSNode *)node {
-    TSLayoutResult *layoutResult = [TSLayoutResult new];
+- (TSNodeLayoutResult *)_layoutResultWithScriptResult:(TSScriptLayoutResult *)result node:(TSNode *)node {
+    TSNodeLayoutResult *layoutResult = [TSNodeLayoutResult new];
     layoutResult.node = node;
     layoutResult.frame = CGRectMake(result.x, result.y, result.width, result.height);
     layoutResult.allWidth = result.allWidth;
@@ -82,7 +82,7 @@
     for (NSUInteger i = 0; i < result.subnodes.count; ++i) {
         TSScriptLayoutResult *subScriptResult = [result.subnodes objectAtIndex:i];
         TSNode *subNode = [node.subnodes objectAtIndex:i];
-        TSLayoutResult *subResult = [self _layoutResultWithScriptResult:subScriptResult node:subNode];
+        TSNodeLayoutResult *subResult = [self _layoutResultWithScriptResult:subScriptResult node:subNode];
         [subResults addObject:subResult];
     }
     layoutResult.subNodeResults = subResults;
@@ -108,7 +108,7 @@
     return NO;
 }
 
-- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSLayoutResult *)target tempNode:(TSNode *)tempNode {
+- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSNodeLayoutResult *)target tempNode:(TSNode *)tempNode {
     return NO;
 }
 

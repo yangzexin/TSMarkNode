@@ -43,7 +43,7 @@
 @property (nonatomic, strong) UIView *connectionViewContainer;
 @property (nonatomic, strong) UIView *nodeViewContainer;
 
-@property (nonatomic, strong) TSLayoutResult *layoutResult;
+@property (nonatomic, strong) TSNodeLayoutResult *layoutResult;
 
 @property (nonatomic, strong) NSMutableArray<TSViewFrameChangeContext *> *changeContextList;
 
@@ -308,8 +308,8 @@
 
 - (void)_checkDraggingInsertNodeWithPoint:(CGPoint)point {
     CGRect draggingFrame = self.draggingNodeView.frame;
-    __block TSLayoutResult *targetResult = nil;
-    [TSLayoutResult traverseWithResult:self.layoutResult reverse:YES block:^(TSLayoutResult * _Nonnull result, BOOL * _Nonnull stop) {
+    __block TSNodeLayoutResult *targetResult = nil;
+    [TSNodeLayoutResult traverseWithResult:self.layoutResult reverse:YES block:^(TSNodeLayoutResult * _Nonnull result, BOOL * _Nonnull stop) {
         if ([result.node isDescendantOfNode:self.draggingNodeView.node]) {
             return;
         }
@@ -469,7 +469,7 @@
     }];
 }
 
-- (void)_layoutWithResult:(TSLayoutResult *)result {
+- (void)_layoutWithResult:(TSNodeLayoutResult *)result {
     TSNodeLayoutContext *context = result.node.context;
     if (context == nil) {
         context = [TSNodeLayoutContext new];
@@ -514,7 +514,7 @@
     }];
     [self.changeContextList addObject:changeContext];
     
-    for (TSLayoutResult *subResult in result.subNodeResults) {
+    for (TSNodeLayoutResult *subResult in result.subNodeResults) {
         [self _layoutWithResult:subResult];
         UIView<TSMindConnectionView> *connectionView = [subResult.node.context connectionView];
         id<TSNodeStyle> nodeStyle = result.node.style;

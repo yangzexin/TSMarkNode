@@ -9,15 +9,22 @@
 #ifndef TSLayouter_Private_h
 #define TSLayouter_Private_h
 
-@interface TSLayoutResult ()
+@interface TSNodeLayoutResult ()
 
 @property (nonatomic, assign) CGRect frame;
 @property (nonatomic, assign) CGFloat allWidth;
-@property (nonatomic, strong) NSArray<TSLayoutResult *> *subNodeResults;
+@property (nonatomic, strong) NSArray<TSNodeLayoutResult *> *subNodeResults;
 
 @property (nonatomic, weak) TSNode *node;
 
-@property (nonatomic, weak) TSLayoutResult *parent;
+@property (nonatomic, weak) TSNodeLayoutResult *parent;
+
+@end
+
+@interface TSLayoutResult ()
+
+@property (nonatomic, strong) TSNodeLayoutResult *nodeLayoutResult;
+@property (nonatomic, assign) CGRect initialDisplayRect;
 
 @end
 

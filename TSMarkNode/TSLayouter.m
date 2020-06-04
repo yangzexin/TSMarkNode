@@ -12,9 +12,9 @@
 #import "TSNode+LayoutAddition.h"
 #import "TSNodeStyle.h"
 
-@implementation TSLayoutResult
+@implementation TSNodeLayoutResult
 
-+ (void)traverseWithResult:(TSLayoutResult *)result reverse:(BOOL)reverse block:(void(^)(TSLayoutResult *result, BOOL *stop))block {
++ (void)traverseWithResult:(TSNodeLayoutResult *)result reverse:(BOOL)reverse block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block {
     BOOL stop = NO;
     block(result, &stop);
     if (stop) {
@@ -22,13 +22,13 @@
     }
     if (result.subNodeResults != nil && result.subNodeResults.count > 0) {
         for (NSUInteger i = 0; i < result.subNodeResults.count; ++i) {
-            TSLayoutResult *subResult = [result.subNodeResults objectAtIndex:reverse ? (result.subNodeResults.count - 1 - i) : i];
+            TSNodeLayoutResult *subResult = [result.subNodeResults objectAtIndex:reverse ? (result.subNodeResults.count - 1 - i) : i];
             [self traverseWithResult:subResult block:block];
         }
     }
 }
 
-+ (void)traverseWithResult:(TSLayoutResult *)result block:(void(^)(TSLayoutResult *result, BOOL *stop))block {
++ (void)traverseWithResult:(TSNodeLayoutResult *)result block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block {
     [self traverseWithResult:result reverse:NO block:block];
 }
 
@@ -44,12 +44,12 @@
     return self;
 }
 
-- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSAssert(YES, @"This method should be implemented by subclass");
     return nil;
 }
 
-- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSLayoutResult *)target tempNode:(TSNode *)tempNode {
+- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSNodeLayoutResult *)target tempNode:(TSNode *)tempNode {
     NSAssert(YES, @"This method should be implemented by subclass");
     return NO;
 }

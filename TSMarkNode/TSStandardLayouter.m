@@ -59,7 +59,7 @@
     return self;
 }
 
-- (void)_calculateNodeSize:(TSNode *)node result:(TSLayoutResult *)result {
+- (void)_calculateNodeSize:(TSNode *)node result:(TSNodeLayoutResult *)result {
     UIFont *font = [self.delegate layouter:self fontForNode:node];
     TSLimitedSize limitedSize = [self.delegate layouter:self limitedSizeForNode:node];
     CGFloat textMaxWidth = limitedSize.maxWidth;
@@ -73,7 +73,7 @@
     result.titleFrame = CGRectMake(padding, padding, titleSize.width, titleSize.height);
 }
 
-- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSMutableArray *leftNodes = self.leftNodes;
     NSMutableArray *rightNodes = self.rightNodes;
     
@@ -116,14 +116,14 @@
             }];
         }];
     }
-    TSLayoutResult *rootResult = [self _calculateNodeSize:node displayLevel:0 hanleSubNodes:NO];
+    TSNodeLayoutResult *rootResult = [self _calculateNodeSize:node displayLevel:0 hanleSubNodes:NO];
     
     NSMutableArray *leftResults = [NSMutableArray array];
     CGFloat leftMaxWidth = .0f;
     CGFloat leftTotalHeight = .0f;
     for (NSUInteger i = 0; i < leftNodes.count; ++i) {
         TSNode *leftSubNode = [leftNodes objectAtIndex:i];
-        TSLayoutResult *leftSubResult = [self _calculateNodeSize:leftSubNode displayLevel:1 hanleSubNodes:YES];
+        TSNodeLayoutResult *leftSubResult = [self _calculateNodeSize:leftSubNode displayLevel:1 hanleSubNodes:YES];
         leftSubResult.parent = rootResult;
         leftTotalHeight += leftSubResult.frame.size.height;
         if (i != leftNodes.count - 1) {
@@ -135,7 +135,7 @@
     }
     CGFloat leftOffsetY = (size.height - leftTotalHeight) / 2;
     for (NSUInteger i = 0; i < leftResults.count; ++i) {
-        TSLayoutResult *leftSubResult = [leftResults objectAtIndex:i];
+        TSNodeLayoutResult *leftSubResult = [leftResults objectAtIndex:i];
         TSSpacing spacing = [self.delegate layouter:self spacingForNode:leftSubResult.node];
         CGFloat maxWidth = [self _setNodePosition:leftSubResult offsetX:0 offsetY:leftOffsetY left:YES] - spacing.horizontal;
         if (maxWidth > leftMaxWidth) {
@@ -146,7 +146,7 @@
     
     CGFloat centerX = size.width / 2;
     for (NSUInteger i = 0; i < leftResults.count; ++i) {
-        TSLayoutResult *leftSubResult = [leftResults objectAtIndex:i];
+        TSNodeLayoutResult *leftSubResult = [leftResults objectAtIndex:i];
         TSSpacing spacing = [self.delegate layouter:self spacingForNode:leftSubResult.node];
         [self _setLeftNodePosition:leftSubResult containerWidth:leftMaxWidth offsetX:centerX - leftMaxWidth - spacing.horizontal - rootResult.frame.size.width / 2];
     }
@@ -156,7 +156,7 @@
     CGFloat rightTotalHeight = .0f;
     for (NSUInteger i = 0; i < rightNodes.count; ++i) {
         TSNode *rightSubNode = [rightNodes objectAtIndex:i];
-        TSLayoutResult *rightSubResult = [self _calculateNodeSize:rightSubNode displayLevel:1 hanleSubNodes:YES];
+        TSNodeLayoutResult *rightSubResult = [self _calculateNodeSize:rightSubNode displayLevel:1 hanleSubNodes:YES];
         rightSubResult.parent = rootResult;
         rightTotalHeight += rightSubResult.frame.size.height;
         if (i != rightNodes.count - 1) {
@@ -170,7 +170,7 @@
     TSSpacing rootNodeSpacing = [self.delegate layouter:self spacingForNode:node];
     CGFloat rightX = centerX + rootResult.frame.size.width / 2 + rootNodeSpacing.horizontal;
     for (NSUInteger i = 0; i < rightResults.count; ++i) {
-        TSLayoutResult *rightSubResult = [rightResults objectAtIndex:i];
+        TSNodeLayoutResult *rightSubResult = [rightResults objectAtIndex:i];
         TSSpacing spacing = [self.delegate layouter:self spacingForNode:rightSubResult.node];
         CGFloat maxWidth = [self _setNodePosition:rightSubResult offsetX:rightX offsetY:rightOffsetY left:NO] - spacing.horizontal;
         if (maxWidth > rightMaxWidth) {
@@ -197,12 +197,12 @@
     return rootResult;
 }
 
-- (void)_setLeftNodePosition:(TSLayoutResult *)result containerWidth:(CGFloat)containerWidth offsetX:(CGFloat)offsetX {
+- (void)_setLeftNodePosition:(TSNodeLayoutResult *)result containerWidth:(CGFloat)containerWidth offsetX:(CGFloat)offsetX {
     CGRect frame = result.frame;
     frame.origin.x = offsetX + containerWidth - frame.origin.x - frame.size.width;
     result.frame = frame;
     
-    for (TSLayoutResult *subResult in result.subNodeResults) {
+    for (TSNodeLayoutResult *subResult in result.subNodeResults) {
         [self _setLeftNodePosition:subResult containerWidth:containerWidth offsetX:offsetX];
     }
     
@@ -210,12 +210,12 @@
     TSNodeSubAlignment subAlignment = [self.delegate layouter:self subAlignmentForNode:result.node];
     if (subAlignment == TSNodeSubAlignmentTop) {
         CGFloat displayY = 0;
-        TSLayoutResult *firstResult = [result.subNodeResults firstObject];
+        TSNodeLayoutResult *firstResult = [result.subNodeResults firstObject];
         if (result.subNodeResults.count == 1) {
             displayY = displayRect.origin.y;
             displayY += firstResult.frame.size.height / 2;
         } else if (result.subNodeResults.count > 1) {
-            TSLayoutResult *lastResult = [result.subNodeResults lastObject];
+            TSNodeLayoutResult *lastResult = [result.subNodeResults lastObject];
             CGFloat firstResutPlugPointY = firstResult.plugPoint.y;
             CGFloat lastResultPlugPointY = lastResult.plugPoint.y;
             CGFloat centerY = firstResutPlugPointY + (lastResultPlugPointY - firstResutPlugPointY) / 2 - result.frame.origin.y;
@@ -230,7 +230,7 @@
     result.plugPoint = CGPointMake(frame.origin.x + frame.size.width, frame.origin.y + displayRect.origin.y + (parentSubAlignment == TSNodeSubAlignmentTop ? (result.displayRect.size.height) : (result.displayRect.size.height / 2)));
 }
 
-- (CGFloat)_setNodePosition:(TSLayoutResult *)result offsetX:(CGFloat)offsetX offsetY:(CGFloat)offsetY left:(BOOL)left {
+- (CGFloat)_setNodePosition:(TSNodeLayoutResult *)result offsetX:(CGFloat)offsetX offsetY:(CGFloat)offsetY left:(BOOL)left {
     CGRect frame = result.frame;
     frame.origin = CGPointMake(offsetX, offsetY);
     result.frame = frame;
@@ -241,7 +241,7 @@
     
     CGFloat subNodesHeight = .0f;
     for (NSUInteger i = 0; i < result.subNodeResults.count; ++i) {
-        TSLayoutResult *subResult = [result.subNodeResults objectAtIndex:i];
+        TSNodeLayoutResult *subResult = [result.subNodeResults objectAtIndex:i];
         subNodesHeight += subResult.frame.size.height;
         if (i != result.subNodeResults.count - 1) {
             TSSpacing spacing = [self.delegate layouter:self spacingForNode:subResult.node];
@@ -252,7 +252,7 @@
     
     TSSpacing spacing = [self.delegate layouter:self spacingForNode:result.node];
     CGFloat maxWidth = offsetX + result.frame.size.width + spacing.horizontal;
-    for (TSLayoutResult *subResult in result.subNodeResults) {
+    for (TSNodeLayoutResult *subResult in result.subNodeResults) {
         TSSpacing subSpacing = [self.delegate layouter:self spacingForNode:subResult.node];
         CGFloat nextOffsetX = offsetX + result.frame.size.width + subSpacing.horizontal;
         CGFloat nextOffsetY = offsetY;
@@ -268,12 +268,12 @@
         if (subAlignment == TSNodeSubAlignmentTop) {
             // Adjust y of displayRect
             CGFloat displayY = 0;
-            TSLayoutResult *firstResult = [result.subNodeResults firstObject];
+            TSNodeLayoutResult *firstResult = [result.subNodeResults firstObject];
             if (result.subNodeResults.count == 1) {
                 displayY = displayRect.origin.y;
                 displayY += firstResult.frame.size.height / 2;
             } else if (result.subNodeResults.count > 1) {
-                TSLayoutResult *lastResult = [result.subNodeResults lastObject];
+                TSNodeLayoutResult *lastResult = [result.subNodeResults lastObject];
                 CGFloat firstResutPlugPointY = firstResult.plugPoint.y;
                 CGFloat lastResultPlugPointY = lastResult.plugPoint.y;
                 CGFloat centerY = firstResutPlugPointY + (lastResultPlugPointY - firstResutPlugPointY) / 2 - result.frame.origin.y;
@@ -291,8 +291,8 @@
     return maxWidth;
 }
 
-- (TSLayoutResult *)_calculateNodeSize:(TSNode *)node displayLevel:(NSUInteger)displayLevel hanleSubNodes:(BOOL)handleSubNodes {
-    TSLayoutResult *result = [TSLayoutResult new];
+- (TSNodeLayoutResult *)_calculateNodeSize:(TSNode *)node displayLevel:(NSUInteger)displayLevel hanleSubNodes:(BOOL)handleSubNodes {
+    TSNodeLayoutResult *result = [TSNodeLayoutResult new];
     result.node = node;
     node.displayLevel = [NSNumber numberWithUnsignedInteger:displayLevel];
     
@@ -304,10 +304,10 @@
         CGFloat maxSubNodeWidth = .0f;
         CGFloat totalHeight = .0f;
         const NSUInteger numOfNodes = nodes.count;
-        NSMutableArray<TSLayoutResult *> *subNodeLayoutResults = [NSMutableArray array];
+        NSMutableArray<TSNodeLayoutResult *> *subNodeLayoutResults = [NSMutableArray array];
         for (NSUInteger i = 0; i < numOfNodes; ++i) {
             TSNode *subNode = [nodes objectAtIndex:i];
-            TSLayoutResult *subResult = [self _calculateNodeSize:subNode displayLevel:displayLevel + 1 hanleSubNodes:YES];
+            TSNodeLayoutResult *subResult = [self _calculateNodeSize:subNode displayLevel:displayLevel + 1 hanleSubNodes:YES];
             subResult.parent = result;
             [subNodeLayoutResults addObject:subResult];
             if (subResult.frame.size.width > maxSubNodeWidth) {
@@ -327,7 +327,7 @@
         TSNodeSubAlignment subAlignment = [self.delegate layouter:self subAlignmentForNode:result.node];
         if (subAlignment == TSNodeSubAlignmentTop && subNodeLayoutResults.count == 1) {
             // Additional height for displaying only 1 sub node
-            TSLayoutResult *firstResult = [subNodeLayoutResults firstObject];
+            TSNodeLayoutResult *firstResult = [subNodeLayoutResults firstObject];
             if (nodeHeight < firstResult.frame.size.height * 2) {
                 nodeHeight = firstResult.frame.size.height + nodeSize.height;
             }
@@ -343,7 +343,7 @@
     return YES;
 }
 
-- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSLayoutResult *)target tempNode:(TSNode *)tempNode {
+- (BOOL)shouldPerformDragWithDraggingNode:(TSNode *)draggingNode draggingFrame:(CGRect)draggingFrame targetDisplayRect:(CGRect)displayRect closingToTarget:(TSNodeLayoutResult *)target tempNode:(TSNode *)tempNode {
     CGRect topFrame = draggingFrame;
     topFrame.size.height = 20;
     if (CGRectIntersectsRect(topFrame, displayRect)) {

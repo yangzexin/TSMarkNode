@@ -62,7 +62,7 @@
     
 }
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint fromPoint = result.connectionPoint;
     [path moveToPoint:fromPoint];
@@ -99,7 +99,7 @@
     return path;
 }
 
-- (void)setParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult animated:(BOOL)animated {
+- (void)setParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult animated:(BOOL)animated {
     CAShapeLayer *shapeLayer = (CAShapeLayer *) self.layer;
     
     UIBezierPath *path = [self pathForParentResult:result subResult:subResult];
@@ -136,7 +136,7 @@
 
 @implementation TSDirectConnectionView
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint fromPoint = result.connectionPoint;
     [path moveToPoint:fromPoint];
@@ -150,7 +150,7 @@
 
 @implementation TSCurveConnectionView
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint fromPoint = result.connectionPoint;
     [path moveToPoint:fromPoint];
@@ -184,7 +184,7 @@
 
 @implementation TSRectConnectionView
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint fromPoint = result.connectionPoint;
     CGPoint toPoint = subResult.plugPoint;
@@ -216,7 +216,7 @@
     [super initCompat];
 }
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     CGPoint fromPoint = result.connectionPoint;

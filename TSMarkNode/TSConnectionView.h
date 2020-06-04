@@ -10,7 +10,7 @@
 #import <SFiOSKit/SFiOSKit.h>
 #import "TSMindView.h"
 
-@class TSLayoutResult;
+@class TSNodeLayoutResult;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSUInteger fillWidth;
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult;
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult;
 
 @end
 

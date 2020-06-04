@@ -14,7 +14,7 @@
 
 @class TSNode;
 @class TSMindView;
-@class TSLayoutResult;
+@class TSNodeLayoutResult;
 @protocol TSMindNodeView;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) TSMindView *mindView;
 
-- (void)setParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult animated:(BOOL)animated;
+- (void)setParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult animated:(BOOL)animated;
 
 @end
 

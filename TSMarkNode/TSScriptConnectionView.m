@@ -52,7 +52,7 @@
 
 @implementation TSScriptConnectionView
 
-- (NSDictionary *)_dictionaryForLayoutResult:(TSLayoutResult *)result point:(CGPoint)point {
+- (NSDictionary *)_dictionaryForLayoutResult:(TSNodeLayoutResult *)result point:(CGPoint)point {
     return @{@"x": [NSNumber numberWithDouble:point.x],
              @"y": [NSNumber numberWithDouble:point.y],
              @"width": [NSNumber numberWithDouble:result.frame.size.width],
@@ -64,7 +64,7 @@
              };
 }
 
-- (UIBezierPath *)pathForParentResult:(TSLayoutResult *)result subResult:(TSLayoutResult *)subResult {
+- (UIBezierPath *)pathForParentResult:(TSNodeLayoutResult *)result subResult:(TSNodeLayoutResult *)subResult {
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
