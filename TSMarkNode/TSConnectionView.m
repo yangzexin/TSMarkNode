@@ -1,6 +1,6 @@
 //
 //  TSConnectionView.m
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/14.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -220,16 +220,17 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     CGPoint fromPoint = result.connectionPoint;
-    [path moveToPoint:fromPoint];
     CGPoint toPoint = subResult.plugPoint;
     CGPoint controlPoint2;
     CGFloat additionLineWidth = subResult.displayRect.size.width;
     if (toPoint.x < fromPoint.x) {
         // left
+        fromPoint.x = result.frame.origin.x;
         controlPoint2.x = fromPoint.x - result.frame.size.width / 2;
         additionLineWidth = -additionLineWidth;
     } else {
         // right
+        fromPoint.x = result.frame.origin.x + result.frame.size.width;
         controlPoint2.x = fromPoint.x + result.frame.size.width / 2;
     }
     if (toPoint.y < fromPoint.y) {
@@ -237,6 +238,7 @@
     } else {
         controlPoint2.y = toPoint.y;
     }
+    [path moveToPoint:fromPoint];
     CGPoint controlPoint1 = CGPointMake(toPoint.x, fromPoint.y);
     
     [path addCurveToPoint:CGPointMake(toPoint.x, toPoint.y + self.lineWidth) controlPoint1:controlPoint1 controlPoint2:controlPoint2];

@@ -1,6 +1,6 @@
 //
-//  TSSquareLayouter.m
-//  Markdown
+//  TSStandardLayouter.m
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/20.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -10,6 +10,7 @@
 #import "TSLayouter+Private.h"
 #import "TSNode.h"
 #import "TSNode+LayoutAddition.h"
+#import <SFiOSKit/SFiOSKit.h>
 
 @interface TSNode (StandardLayoutAddition)
 
@@ -73,7 +74,9 @@
     result.titleFrame = CGRectMake(padding, padding, titleSize.width, titleSize.height);
 }
 
-- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+    TSLayoutResult *layoutResult = [TSLayoutResult new];
+    
     NSMutableArray *leftNodes = self.leftNodes;
     NSMutableArray *rightNodes = self.rightNodes;
     
@@ -94,7 +97,7 @@
             __weak typeof(nodes) weakNodes = nodes;
             __weak typeof(subNode) weakSubNode = subNode;
             [subNode addRemoveObserver:^{
-                NSLog(@"%@ remove: %@, %@", weakNodes == weakSelf.leftNodes ? @"left" : @"right", weakSubNode, weakSubNode.title);
+                //NSLog(@"%@ remove: %@, %@", weakNodes == weakSelf.leftNodes ? @"left" : @"right", weakSubNode, weakSubNode.title);
                 [weakNodes removeObject:weakSubNode];
             }];
         }
@@ -105,13 +108,13 @@
         [node addNewSubnodeObserver:^(TSNode * _Nonnull subNode) {
             __strong typeof(self) self = weakSelf;
             NSMutableArray *nodes = self.leftNodes.count > self.rightNodes.count ? self.rightNodes : self.leftNodes;
-            NSLog(@"%@ add: %@, %@", nodes == weakSelf.leftNodes ? @"left" : @"right", subNode, subNode.title);
+            //NSLog(@"%@ add: %@, %@", nodes == weakSelf.leftNodes ? @"left" : @"right", subNode, subNode.title);
             [nodes addObject:subNode];
             
             __weak typeof(nodes) weakNodes = nodes;
             __weak typeof(subNode) weakSubNode = subNode;
             [subNode addRemoveObserver:^{
-                NSLog(@"%@ remove: %@, %@", weakNodes == weakSelf.leftNodes ? @"left" : @"right", weakSubNode, weakSubNode.title);
+                //NSLog(@"%@ remove: %@, %@", weakNodes == weakSelf.leftNodes ? @"left" : @"right", weakSubNode, weakSubNode.title);
                 [weakNodes removeObject:weakSubNode];
             }];
         }];
@@ -194,7 +197,10 @@
         all;
     });
     
-    return rootResult;
+    layoutResult.nodeLayoutResult = rootResult;
+    layoutResult.initialDisplayRect = CGRectZero;
+    
+    return layoutResult;
 }
 
 - (void)_setLeftNodePosition:(TSNodeLayoutResult *)result containerWidth:(CGFloat)containerWidth offsetX:(CGFloat)offsetX {

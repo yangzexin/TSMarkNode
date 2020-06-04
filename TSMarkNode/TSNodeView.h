@@ -1,6 +1,6 @@
 //
 //  TSNodeView.h
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/14.
 //  Copyright © 2020 yangzexin. All rights reserved.

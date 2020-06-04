@@ -1,6 +1,6 @@
 //
 //  TSMindView.m
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/14.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -43,7 +43,7 @@
 @property (nonatomic, strong) UIView *connectionViewContainer;
 @property (nonatomic, strong) UIView *nodeViewContainer;
 
-@property (nonatomic, strong) TSNodeLayoutResult *layoutResult;
+@property (nonatomic, strong) TSLayoutResult *layoutResult;
 
 @property (nonatomic, strong) NSMutableArray<TSViewFrameChangeContext *> *changeContextList;
 
@@ -309,7 +309,7 @@
 - (void)_checkDraggingInsertNodeWithPoint:(CGPoint)point {
     CGRect draggingFrame = self.draggingNodeView.frame;
     __block TSNodeLayoutResult *targetResult = nil;
-    [TSNodeLayoutResult traverseWithResult:self.layoutResult reverse:YES block:^(TSNodeLayoutResult * _Nonnull result, BOOL * _Nonnull stop) {
+    [TSNodeLayoutResult traverseWithResult:self.layoutResult.nodeLayoutResult reverse:YES block:^(TSNodeLayoutResult * _Nonnull result, BOOL * _Nonnull stop) {
         if ([result.node isDescendantOfNode:self.draggingNodeView.node]) {
             return;
         }
@@ -542,7 +542,7 @@
 
 - (void)layoutWithAnimated:(BOOL)animated {
     self.changeContextList = [NSMutableArray array];
-    [self _layoutWithResult:self.layoutResult];
+    [self _layoutWithResult:self.layoutResult.nodeLayoutResult];
     void(^animations)(void) = ^{
         for (TSViewFrameChangeContext *changeContext in self.changeContextList) {
             changeContext.doChange();
@@ -565,9 +565,10 @@
 
 - (CGRect)visibleRect {
     CGRect rect;
-    rect.size.width = self.layoutResult.allWidth;
-    rect.origin.x = (self.bounds.size.width - self.layoutResult.allWidth) / 2;
-    rect.size.height = self.layoutResult.frame.size.height;
+    TSNodeLayoutResult *rootNodeLayoutResult = self.layoutResult.nodeLayoutResult;
+    rect.size.width = rootNodeLayoutResult.allWidth;
+    rect.origin.x = (self.bounds.size.width - rootNodeLayoutResult.allWidth) / 2;
+    rect.size.height = rootNodeLayoutResult.frame.size.height;
     rect.origin.y = (self.bounds.size.height - rect.size.height) / 2;
     
     return rect;

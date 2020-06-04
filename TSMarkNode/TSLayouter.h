@@ -1,6 +1,6 @@
 //
 //  TSLayouter.h
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/13.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <SFiOSKit/SFiOSKit.h>
 #import "TSNodeStyle.h"
 
 @class TSNode;
@@ -123,7 +122,7 @@ typedef struct {
  - parameter size: Size of conatiner
  - returns: The layout result of all nodes and initial display rect.
  */
-- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size;
+- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size;
 
 /**
  Check if layouter support dragging

@@ -1,6 +1,6 @@
 //
 //  TSScriptLayouter.m
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/19.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -50,7 +50,7 @@
     return layouter;
 }
 
-- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSMutableDictionary *nodeDict = [NSMutableDictionary dictionaryWithDictionary:[node dictionary]];
     [nodeDict addEntriesFromDictionary:@{@"layoutWidth": [NSNumber numberWithInteger:size.width], @"layoutHeight": [NSNumber numberWithInteger:size.height]}];
     __block NSDictionary *resultDict = nil;
@@ -63,7 +63,10 @@
     SFMappingPropertyToClass(subnodes, TSScriptLayoutResult)
     SFEndPropertyMapping;
     NSArray *results = [TSScriptLayoutResult sf_objectFromDictionary:resultDict mapping:mapping];
-    TSNodeLayoutResult *layoutResult = [self _layoutResultWithScriptResult:[results objectAtIndex:0] node:node];
+    TSLayoutResult *layoutResult = [TSLayoutResult new];
+    TSNodeLayoutResult *nodeLayoutResult = [self _layoutResultWithScriptResult:[results objectAtIndex:0] node:node];
+    layoutResult.nodeLayoutResult = nodeLayoutResult;
+    layoutResult.initialDisplayRect = CGRectZero;
     
     return layoutResult;
 }

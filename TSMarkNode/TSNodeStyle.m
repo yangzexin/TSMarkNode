@@ -1,6 +1,6 @@
 //
-//  TSNodeTheme.m
-//  Markdown
+//  TSNodeStyle.m
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/18.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -114,6 +114,8 @@
 @interface TSDefaultMindViewStyle () <TSNodeStyle>
 
 @property (nonatomic, strong) TSMutableNodeStyle *rootNodeStyle;
+@property (nonatomic, strong) TSMutableNodeStyle *level1Style;
+@property (nonatomic, strong) TSMutableNodeStyle *otherStyle;
 
 @end
 
@@ -136,34 +138,51 @@
     self.rootNodeStyle.borderWidth = 2.0f;
     self.rootNodeStyle.backgroundColor = [UIColor orangeColor];
     self.rootNodeStyle.fontSize = 27.0f;
-    self.rootNodeStyle.connectionViewClassName = NSStringFromClass([TSCurveConnectionView class]);
+    self.rootNodeStyle.connectionViewClassName = NSStringFromClass([TSSimpleConnectionView class]);
+    
+    self.level1Style = [TSMutableNodeStyle new];
+    self.level1Style.borderWidth = 1.0f;
+    self.level1Style.fontSize = 22.0f;
+    self.level1Style.connectionViewClassName = NSStringFromClass([TSCurveConnectionView class]);
+    self.level1Style.backgroundColor = [UIColor darkGrayColor];
+    self.level1Style.textColor = [UIColor whiteColor];
+    
+    self.otherStyle = [TSMutableNodeStyle new];
+    self.otherStyle.borderWidth = .0f;
+    self.otherStyle.fontSize = 16.0f;
+    self.otherStyle.subAlignment = TSNodeSubAlignmentCenter;
+    self.otherStyle.connectionViewClassName = NSStringFromClass([TSLineConnectionView class]);
+    self.otherStyle.viewClassName = NSStringFromClass([TSSimpleNodeView class]);
+    self.otherStyle.backgroundColor = [UIColor sf_colorWithRed:225 green:225 blue:225 alpha:100];
+    self.otherStyle.alignment = TSNodeContentAlignmentLeft;
+    self.otherStyle.textColor = [UIColor blackColor];
     
     return self;
 }
 
 - (void)willLayoutRootNode:(nullable TSNode *)node layouterName:(nonnull NSString *)layouterName {
-    
+    [self _setNodeDisplayLevel:node displayLevel:0];
+}
+
+- (void)_setNodeDisplayLevel:(TSNode *)node displayLevel:(NSUInteger)displayLevel {
+    node.displayLevel = @(displayLevel);
+    for (TSNode *subNode in node.subnodes) {
+        [self _setNodeDisplayLevel:subNode displayLevel:displayLevel + 1];
+    }
 }
 
 - (id<TSNodeStyle>)styleForNode:(nullable TSNode *)node {
     if (node == nil || [node isRootNode]) {
         return self.rootNodeStyle;
     }
-    if ([[node subnodes] count] > 3) {
-        TSMutableNodeStyle *style = [self mutableCopy];
-        style.connectionViewClassName = NSStringFromClass([TSRectConnectionView class]);
-        
-        return style;
-    }
-    if ([node.subnodes count] == 0) {
-        TSMutableNodeStyle *style = [self mutableCopy];
-        style.viewClassName = NSStringFromClass([TSSimpleNodeView class]);
-        style.alignment = TSNodeContentAlignmentLeft;
-        style.connectionViewClassName = NSStringFromClass([TSSimpleConnectionView class]);
-        style.backgroundColor = [UIColor whiteColor];
-        style.textColor = [UIColor blackColor];
-        
-        return style;
+    NSNumber *displayLevelNumber = node.displayLevel;
+    if (displayLevelNumber) {
+        NSUInteger displayLevel = displayLevelNumber.unsignedIntValue;
+        if (displayLevel == 1) {
+            return self.level1Style;
+        } else {
+            return self.otherStyle;
+        }
     }
     
     return self;

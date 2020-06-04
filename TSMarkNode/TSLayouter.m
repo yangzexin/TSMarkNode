@@ -1,6 +1,6 @@
 //
 //  TSLayouter.m
-//  Markdown
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/13.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -34,6 +34,10 @@
 
 @end
 
+@implementation TSLayoutResult
+
+@end
+
 @implementation TSLayouter
 
 - (instancetype)initWithDelegate:(id<TSLayouterDelegate>)delegate {
@@ -44,7 +48,7 @@
     return self;
 }
 
-- (TSNodeLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
+- (TSLayoutResult *)layout:(TSNode *)node size:(CGSize)size {
     NSAssert(YES, @"This method should be implemented by subclass");
     return nil;
 }

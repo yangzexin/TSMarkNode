@@ -1,6 +1,6 @@
 //
-//  TSNode+Context.m
-//  Markdown
+//  TSNode+LayoutAddition.m
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/15.
 //  Copyright © 2020 yangzexin. All rights reserved.
@@ -521,6 +521,7 @@
     }
     node.parent = self.parent;
     [parentNode.subnodes insertObject:node atIndex:index];
+    [parentNode notifyNewSubnodeObserver:node];
     
     return YES;
 }
@@ -537,6 +538,7 @@
     }
     node.parent = self.parent;
     [parentNode.subnodes insertObject:node atIndex:index];
+    [parentNode notifyNewSubnodeObserver:node];
     
     return YES;
 }

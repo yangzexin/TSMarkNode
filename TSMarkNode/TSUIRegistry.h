@@ -1,6 +1,6 @@
 //
-//  TSLayouterRegistry.h
-//  Markdown
+//  TSUIRegistry.h
+//  TSMarkNode
 //
 //  Created by yangzexin on 2020/5/21.
 //  Copyright © 2020 yangzexin. All rights reserved.
