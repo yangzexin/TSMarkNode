@@ -17,27 +17,53 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TSNodeLayoutResult : NSObject
 
+// The frame of single node
 @property (nonatomic, assign, readonly) CGRect frame;
+
+// Results of subnodes
 @property (nonatomic, strong, readonly, nullable) NSArray<TSNodeLayoutResult *> *subNodeResults;
+
+// As a parent node, source point of connection line
 @property (nonatomic, assign) CGPoint connectionPoint;
+
+// As a sub node, connection point of connection line
 @property (nonatomic, assign) CGPoint plugPoint;
 
+// The width that contains all subnodes
 @property (nonatomic, assign, readonly) CGFloat allWidth;
 
+// The display rectangle of node
 @property (nonatomic, assign) CGRect displayRect;
+
+// The title frame
 @property (nonatomic, assign) CGRect titleFrame;
 
+// Associated node
 @property (nonatomic, weak, readonly, nullable) TSNode *node;
 
+/**
+ Traverse result
+ - parameter result: The node result
+ - parameter reverse: The traverse order of sub results
+ - parameter block: callback
+ */
 + (void)traverseWithResult:(TSNodeLayoutResult *)result reverse:(BOOL)reverse block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block;
 
+/**
+ Traverse result by normal order
+ - parameter result: The node result
+ - parameter block: callback
+ */
 + (void)traverseWithResult:(TSNodeLayoutResult *)result block:(void(^)(TSNodeLayoutResult *result, BOOL *stop))block;
 
 @end
 
 @interface TSLayoutResult : NSObject
 
+// The result of root node
 @property (nonatomic, strong, readonly) TSNodeLayoutResult *nodeLayoutResult;
+
+// Initial display rect
 @property (nonatomic, assign, readonly) CGRect initialDisplayRect;
 
 @end
@@ -56,17 +82,39 @@ typedef struct {
 
 @protocol TSLayouterDelegate <NSObject>
 
+/**
+ Get limit size of node
+ */
 - (TSLimitedSize)layouter:(id<TSLayouter>)layouter limitedSizeForNode:(TSNode *)node;
+
+/**
+ Get padding of node
+ */
 - (CGFloat)layouter:(id<TSLayouter>)layouter paddingForNode:(TSNode *)node;
+
+/**
+ Get font of node's title
+ */
 - (UIFont *)layouter:(id<TSLayouter>)layouter fontForNode:(TSNode *)node;
+
+/**
+ Get spacing of node
+ */
 - (TSSpacing)layouter:(id<TSLayouter>)layouter spacingForNode:(TSNode *)node;
+
+/**
+ Get sub aligment of node
+ */
 - (TSNodeSubAlignment)layouter:(id<TSLayouter>)layouter subAlignmentForNode:(TSNode *)node;
 
 @end
 
 @protocol TSLayouter <NSObject>
 
+// Name of layouter
 @property (nonatomic, copy) NSString *name;
+
+// Delegate
 @property (nonatomic, weak) id<TSLayouterDelegate> delegate;
 
 /**
@@ -112,6 +160,7 @@ typedef struct {
 
 @end
 
+// Abstract class
 @interface TSLayouter : NSObject <TSLayouter>
 
 @property (nonatomic, copy) NSString *name;
