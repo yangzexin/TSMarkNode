@@ -153,7 +153,7 @@
     self.otherStyle.subAlignment = TSNodeSubAlignmentCenter;
     self.otherStyle.connectionViewClassName = NSStringFromClass([TSLineConnectionView class]);
     self.otherStyle.viewClassName = NSStringFromClass([TSSimpleNodeView class]);
-    self.otherStyle.backgroundColor = [UIColor sf_colorWithRed:225 green:225 blue:225 alpha:100];
+    self.otherStyle.backgroundColor = [UIColor sf_colorWithRed:255 green:255 blue:255 alpha:100];
     self.otherStyle.alignment = TSNodeContentAlignmentLeft;
     self.otherStyle.textColor = [UIColor blackColor];
     

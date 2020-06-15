@@ -225,12 +225,12 @@
     CGFloat additionLineWidth = subResult.displayRect.size.width;
     if (toPoint.x < fromPoint.x) {
         // left
-        fromPoint.x = result.frame.origin.x;
+        //fromPoint.x = result.frame.origin.x;
         controlPoint2.x = fromPoint.x - result.frame.size.width / 2;
         additionLineWidth = -additionLineWidth;
     } else {
         // right
-        fromPoint.x = result.frame.origin.x + result.frame.size.width;
+        //fromPoint.x = result.frame.origin.x + result.frame.size.width;
         controlPoint2.x = fromPoint.x + result.frame.size.width / 2;
     }
     if (toPoint.y < fromPoint.y) {
