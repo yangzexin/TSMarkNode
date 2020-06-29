@@ -42,8 +42,10 @@
         }
         shapeLayer.lineDashPattern = lineDash;
     }];
+    __weak typeof(self) weakSelf = self;
     [SFObserveProperty(self, lineWidth) onChange:^(NSNumber *value) {
         __strong typeof(weakShapeLayer) shapeLayer = weakShapeLayer;
+        __strong typeof(weakSelf) self = weakSelf;
         shapeLayer.lineWidth = self.lineWidth;
         shapeLayer.lineCap = kCALineCapRound;
     }];
@@ -51,7 +53,6 @@
         __strong typeof(weakShapeLayer) shapeLayer = weakShapeLayer;
         shapeLayer.strokeColor = [NSString colorWithAttrValue:value].CGColor;
     }];
-    __weak typeof(self) weakSelf = self;
     [SFObserveProperty(self, fillColor) onChange:^(NSString *value) {
         __strong typeof(weakSelf) self = weakSelf;
         self.fillColor_ = [NSString colorWithAttrValue:value];
